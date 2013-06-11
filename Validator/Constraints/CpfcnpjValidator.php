@@ -18,6 +18,16 @@ class CpfcnpjValidator extends ConstraintValidator
 {
     public function isValid($value, Constraint $constraint)
     {
+        return $this->validate($value, $constraint);
+    }
+
+    public function setMessage($message, $value)
+    {
+        $this->context->addViolation($message, $value);
+    }
+
+    public function validate($value, Constraint $constraint)
+    {
         if (!$constraint->aceitar) {
             throw new ConstraintDefinitionException('É necessário definer a opção "aceitar" da restrição.');
         }
