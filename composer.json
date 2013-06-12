@@ -1,5 +1,5 @@
 {
-    "name": "brazilianfriendsofsymfony/brasil-bundle",
+    "name": "EHER/BFOSBrasilBundle",
     "type": "symfony-bundle",
     "description": "Symfony BFOSBrasilBundle",
     "keywords": ["Brasil localized twig"],
