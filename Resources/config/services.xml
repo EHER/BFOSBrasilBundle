@@ -36,9 +36,9 @@
             <argument type="service" id="doctrine"/>
         </service>-->
 
-        <service id="bfos_brasil.form.type.cidade_choice" class="%bfos_brasil.form.type.cidade_choice.class%">
+        <!--<service id="bfos_brasil.form.type.cidade_choice" class="%bfos_brasil.form.type.cidade_choice.class%">
             <tag name="form.type" alias="bfos_cidade_choice"/>
             <argument type="service" id="doctrine"/>
-        </service>
+        </service>-->
     </services>
 </container>
