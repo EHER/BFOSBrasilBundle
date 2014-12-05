@@ -12,14 +12,11 @@
 
 namespace BFOS\BrasilBundle\Doctrine\Form\Type;
 
-use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use BFOS\BrasilBundle\Doctrine\Form\DataTransformer\CidadeToIdTransformer;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormBuilder;
-use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\Form\AbstractType;
 
 class CidadeEntityType extends AbstractType
@@ -33,7 +30,6 @@ class CidadeEntityType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
         $builder->addViewTransformer(new CidadeToIdTransformer($this->container->get('doctrine')->getEntityManager()));
     }
 
@@ -42,7 +38,6 @@ class CidadeEntityType extends AbstractType
         $view->vars['empty_value'] = 'Primeiro selecione o estado';
         $view->vars['choices'] = array();
     }
-
 
     public function getParent()
     {

@@ -11,8 +11,6 @@ namespace BFOS\BrasilBundle\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
-use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
-use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 class DddValidator extends ConstraintValidator
 {
@@ -20,43 +18,38 @@ class DddValidator extends ConstraintValidator
 
     public function isValid($value, Constraint $constraint)
     {
-
         if (null === $value) {
             return true;
         }
 
-        if (!self::inDDDs($value, self::$DDDs))
-        {
+        if (!self::inDDDs($value, self::$DDDs)) {
             $this->setMessage($constraint->message);
-           return false;
+
+            return false;
         }
 
         return true;
     }
 
-
     /**
      * Checks if a value is part of given choices (see bug #4212)
      *
-     * @param  mixed $value   The value to check
-     * @param  array $choices The array of available choices
+     * @param mixed $value   The value to check
+     * @param array $choices The array of available choices
      *
      * @return Boolean
      */
-    static public  function inDDDs($value, array $choices = array())
+    public static function inDDDs($value, array $choices = array())
     {
-        if(count($choices)==0){
+        if (count($choices) == 0) {
             $choices = self::$DDDs;
         }
-        foreach ($choices as $choice)
-        {
-            if ((int) $choice == (int) $value)
-            {
+        foreach ($choices as $choice) {
+            if ((int) $choice == (int) $value) {
                 return true;
             }
         }
 
         return false;
     }
-
 }
