@@ -13,14 +13,11 @@
 namespace BFOS\BrasilBundle\Doctrine\Form\DataTransformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
-use Doctrine\ORM\EntityManager;
-use Symfony\Component\Form\Util\PropertyPath;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
 class CidadeUFToIdTransformer implements DataTransformerInterface
 {
-
     /**
      * Transforms the Cidade entity to a composed (estado,cidade_id) array value in the form
      *
@@ -37,8 +34,8 @@ class CidadeUFToIdTransformer implements DataTransformerInterface
         if (!is_object($entity)) {
             throw new UnexpectedTypeException($entity, 'object');
         }
-        return array('estado'=>$entity->getUf(), 'cidade'=>$entity->getId());
 
+        return array('estado' => $entity->getUf(), 'cidade' => $entity->getId());
     }
 
     /**
@@ -50,7 +47,7 @@ class CidadeUFToIdTransformer implements DataTransformerInterface
      */
     public function reverseTransform($key)
     {
-        if ('' === $key || null === $key || !isset($key['cidade']) || !isset($key['estado']) ) {
+        if ('' === $key || null === $key || !isset($key['cidade']) || !isset($key['estado'])) {
             return null;
         }
 
@@ -62,7 +59,7 @@ class CidadeUFToIdTransformer implements DataTransformerInterface
             throw new TransformationFailedException(sprintf('UF não é um texto válido.', $key));
         }
 
-        if ($key['cidade']->getUf()!=$key['estado']) {
+        if ($key['cidade']->getUf() != $key['estado']) {
             throw new TransformationFailedException(sprintf('Cidade [%s] não pertence ao estado [%s].', $key['cidade']->getNome(), $key['estado']));
         }
 

@@ -47,7 +47,7 @@ class Cidade
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -57,19 +57,20 @@ class Cidade
     /**
      * Set nome
      *
-     * @param string $nome
+     * @param  string $nome
      * @return Cidade
      */
     public function setNome($nome)
     {
         $this->nome = $nome;
+
         return $this;
     }
 
     /**
      * Get nome
      *
-     * @return string 
+     * @return string
      */
     public function getNome()
     {
@@ -79,19 +80,20 @@ class Cidade
     /**
      * Set uf
      *
-     * @param string $uf
+     * @param  string $uf
      * @return Cidade
      */
     public function setUf($uf)
     {
         $this->uf = $uf;
+
         return $this;
     }
 
     /**
      * Get uf
      *
-     * @return string 
+     * @return string
      */
     public function getUf()
     {
@@ -101,12 +103,13 @@ class Cidade
     /**
      * Set Código IBGE
      *
-     * @param string $codigoIbge
+     * @param  string $codigoIbge
      * @return Cidade
      */
     public function setCodigoIbge($codigoIbge)
     {
         $this->codigoIbge = $codigoIbge;
+
         return $this;
     }
 
@@ -120,10 +123,8 @@ class Cidade
         return $this->codigoIbge;
     }
 
-    function __toString()
+    public function __toString()
     {
         return sprintf('%s-%s', $this->getNome(), $this->getUf());
     }
-
-
 }

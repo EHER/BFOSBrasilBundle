@@ -15,10 +15,8 @@ namespace BFOS\BrasilBundle\Doctrine\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
-use Symfony\Component\Form\FormBuilder;
 use BFOS\BrasilBundle\Doctrine\Form\DataTransformer\TextToIdTransformer;
 use Symfony\Bridge\Doctrine\Form\ChoiceList\EntityChoiceList;
-
 
 class NullEntityType extends AbstractType
 {
@@ -88,7 +86,7 @@ class NullEntityType extends AbstractType
 
     public function getParent()
     {
-         /*if (isset($options['hidden']) && $options['hidden']) {
+        /*if (isset($options['hidden']) && $options['hidden']) {
             return 'hidden';
          }*/
          return 'entity';

@@ -12,24 +12,12 @@
 
 namespace BFOS\BrasilBundle\Doctrine\Form\Type;
 
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\Exception\FormException;
 use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceList;
-use Symfony\Component\Form\Extension\Core\ChoiceList\SimpleChoiceList;
-use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceListInterface;
-use Symfony\Component\Form\Extension\Core\EventListener\FixRadioInputListener;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\Form\Extension\Core\DataTransformer\ChoiceToValueTransformer;
-use Symfony\Component\Form\Extension\Core\DataTransformer\ChoiceToBooleanArrayTransformer;
-use Symfony\Component\Form\Extension\Core\DataTransformer\ChoicesToValuesTransformer;
-use Symfony\Component\Form\Extension\Core\DataTransformer\ChoicesToBooleanArrayTransformer;
 
 class AjaxChoiceType extends \Symfony\Component\Form\Extension\Core\Type\ChoiceType
 {
-
-
     /**
      * {@inheritdoc}
      */
@@ -64,5 +52,4 @@ class AjaxChoiceType extends \Symfony\Component\Form\Extension\Core\Type\ChoiceT
     {
         return 'bfos_brasil_ajax_choice';
     }
-
 }

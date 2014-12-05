@@ -20,7 +20,6 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 
 class CidadeToIdTransformer implements DataTransformerInterface
 {
-
     protected $em;
     protected $class = 'BFOSBrasilBundle:Cidade';
     protected $propertyPath = 'nome';
@@ -33,7 +32,6 @@ class CidadeToIdTransformer implements DataTransformerInterface
         // displaying entities as strings
         $this->propertyPath = new PropertyPath($this->propertyPath);
     }
-
 
     /**
      * Transforms the Cidade entity to a composed (estado,cidade_id) array value in the form
@@ -51,8 +49,8 @@ class CidadeToIdTransformer implements DataTransformerInterface
         if (!is_object($entity)) {
             throw new UnexpectedTypeException($entity, 'object');
         }
-        return $entity->getId();
 
+        return $entity->getId();
     }
 
     /**

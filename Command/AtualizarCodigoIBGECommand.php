@@ -6,12 +6,8 @@ namespace BFOS\BrasilBundle\Command;
 use BFOS\BrasilBundle\Entity\Cidade;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Loja\ProdutoBundle\Entity\ProdutoManager;
-use Loja\ProdutoBundle\Entity\CategoriaProduto;
 
 class AtualizarCodigoIBGECommand extends ContainerAwareCommand
 {
@@ -38,7 +34,7 @@ class AtualizarCodigoIBGECommand extends ContainerAwareCommand
 
         $output->writeln("Iniciando importação...");
 
-        $filepath = __DIR__ . "/../DataFixtures/municipios_ibge.csv";
+        $filepath = __DIR__."/../DataFixtures/municipios_ibge.csv";
         $file_handle = fopen($filepath, "r");
         $lineNumber = 1;
         $quantCidades = 0;
@@ -46,11 +42,10 @@ class AtualizarCodigoIBGECommand extends ContainerAwareCommand
         while (!feof($file_handle)) {
             $line = trim(fgets($file_handle));
             if ($lineNumber > 1 && strlen($line)>0) {
-
                 try {
                     $columns = explode(',', $line);
                     if (count($columns) != 3) {
-                        throw new \InvalidArgumentException("Linha " . $lineNumber . " contém conteúdo inválido: " . $line);
+                        throw new \InvalidArgumentException("Linha ".$lineNumber." contém conteúdo inválido: ".$line);
                     }
                     array_walk($columns, 'trim');
                     $uf = $columns[0];
@@ -67,7 +62,7 @@ class AtualizarCodigoIBGECommand extends ContainerAwareCommand
                         $em->persist($cidade);
                         $quantCidadesAtualizadas++;
                     } else {
-                        $output->writeln("Não encontrou: " . $uf . ' - ' . $nomeCidade);
+                        $output->writeln("Não encontrou: ".$uf.' - '.$nomeCidade);
                     }
                     $quantCidades++;
                 } catch (\InvalidArgumentException $iae) {
@@ -80,9 +75,7 @@ class AtualizarCodigoIBGECommand extends ContainerAwareCommand
         $output->writeln("Salvando os códigos de município...");
         $em->flush();
         $output->writeln("Pronto!");
-        $output->writeln("Cidades no arquivo de municípios             : " . $quantCidades);
-        $output->writeln("Cidades atualizadas com o código de município: " . $quantCidadesAtualizadas);
-
+        $output->writeln("Cidades no arquivo de municípios             : ".$quantCidades);
+        $output->writeln("Cidades atualizadas com o código de município: ".$quantCidadesAtualizadas);
     }
-
 }

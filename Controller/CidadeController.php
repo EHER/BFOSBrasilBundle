@@ -27,9 +27,8 @@ class CidadeController extends Controller
         }
 
         $html = '';
-        foreach($cidades as $cidade)
-        {
-            $html = $html . sprintf("<option value=\"%d\">%s</option>",$cidade->getId(), $cidade->getNome());
+        foreach ($cidades as $cidade) {
+            $html = $html.sprintf("<option value=\"%d\">%s</option>", $cidade->getId(), $cidade->getNome());
         }
 
         return new Response($html);

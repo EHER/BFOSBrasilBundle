@@ -14,13 +14,9 @@ namespace BFOS\BrasilBundle\Doctrine\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use BFOS\BrasilBundle\Doctrine\Form\DataTransformer\CidadeUFToIdTransformer;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
-use Symfony\Component\Form\FormBuilder;
 use \BFOS\BrasilBundle\Doctrine\Form\DataTransformer\CidadeToIdTransformer;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormView;
 use \BFOS\BrasilBundle\Doctrine\Form\EventListener\AddCidadeFieldSubscriber;
 
 class CidadeChoiceType extends AbstractType
@@ -30,46 +26,46 @@ class CidadeChoiceType extends AbstractType
         $this->registry = $registry;
     }
 
-    static function getUFs()
-      {
-      	return array(
-          "0"=>"Selecione o estado",
-          "AC"=>"Acre",
-          "AL"=>"Alagoas",
-          "AP"=>"Amapá",
-          "AM"=>"Amazonas",
-          "BA"=>"Bahia",
-          "CE"=>"Ceará",
-          "DF"=>"Distrito Federal",
-          "ES"=>"Espírito Santo",
-          "GO"=>"Goiás",
-          "MA"=>"Maranhão",
-          "MG"=>"Minas Gerais",
-          "MS"=>"Mato Grosso do Sul",
-          "MT"=>"Mato Grosso",
-          "PA"=>"Pará",
-          "PB"=>"Paraíba",
-          "PR"=>"Paraná",
-          "PE"=>"Pernambuco",
-          "PI"=>"Piauí",
-          "RJ"=>"Rio de Janeiro",
-          "RN"=>"Rio Grande do Norte",
-          "RS"=>"Rio Grande do Sul",
-          "RO"=>"Rondônia",
-          "RR"=>"Roraima",
-          "SP"=>"São Paulo",
-          "SC"=>"Santa Catarina",
-          "SE"=>"Sergipe",
-          "TO"=>"Tocantins",
+    public static function getUFs()
+    {
+        return array(
+          "0" => "Selecione o estado",
+          "AC" => "Acre",
+          "AL" => "Alagoas",
+          "AP" => "Amapá",
+          "AM" => "Amazonas",
+          "BA" => "Bahia",
+          "CE" => "Ceará",
+          "DF" => "Distrito Federal",
+          "ES" => "Espírito Santo",
+          "GO" => "Goiás",
+          "MA" => "Maranhão",
+          "MG" => "Minas Gerais",
+          "MS" => "Mato Grosso do Sul",
+          "MT" => "Mato Grosso",
+          "PA" => "Pará",
+          "PB" => "Paraíba",
+          "PR" => "Paraná",
+          "PE" => "Pernambuco",
+          "PI" => "Piauí",
+          "RJ" => "Rio de Janeiro",
+          "RN" => "Rio Grande do Norte",
+          "RS" => "Rio Grande do Sul",
+          "RO" => "Rondônia",
+          "RR" => "Roraima",
+          "SP" => "São Paulo",
+          "SC" => "Santa Catarina",
+          "SE" => "Sergipe",
+          "TO" => "Tocantins",
           );
-      }
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $estados = self::getUFs();
         $estado_options = array('choices' => $estados);
         $cidade_options = array();
-        if($options['required']){
+        if ($options['required']) {
             $cidade_options['required'] = true;
             $estado_options['required'] = true;
         }
@@ -87,16 +83,13 @@ class CidadeChoiceType extends AbstractType
         $builder->addViewTransformer(new CidadeUFToIdTransformer());
     }
 
-
     public function getParent()
     {
-         /*if ($options['hidden']) {
+        /*if ($options['hidden']) {
             return 'hidden';
          }*/
          return 'form';
     }
-
-
 
     public function getName()
     {

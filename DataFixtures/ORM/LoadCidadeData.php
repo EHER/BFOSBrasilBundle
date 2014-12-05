@@ -2,13 +2,10 @@
 
 namespace BFOS\BrasilBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use \Doctrine\Common\DataFixtures\AbstractFixture;
 use \Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use \Duo\Linkador\Anuncio\AnuncioBundle\Entity\Anuncio;
-use \Duo\Linkador\Anuncio\AnuncioBundle\Entity\AnuncioCidadeAtuacao;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Yaml\Yaml;
 
@@ -27,7 +24,7 @@ class LoadCidadeData extends AbstractFixture implements OrderedFixtureInterface,
 
         $cidades = reset($parsed);
 
-        foreach($cidades as $cidade){
+        foreach ($cidades as $cidade) {
             $c = new \BFOS\BrasilBundle\Entity\Cidade();
 
             $c->setNome($cidade['nome']);
@@ -36,7 +33,6 @@ class LoadCidadeData extends AbstractFixture implements OrderedFixtureInterface,
         }
 
         $manager->flush();
-
     }
 
     public function getOrder()
